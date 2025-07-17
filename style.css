@@ -1,0 +1,90 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 1rem;
+  background: #121212;
+  color: #eee;
+}
+h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+#container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+  max-width: 1200px;
+  margin: auto;
+}
+#controls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  align-items: center;
+}
+#timeframeSelect {
+  padding: 0.5rem;
+  background: #1e1e1e;
+  color: #eee;
+  border: 1px solid #333;
+  border-radius: 4px;
+}
+#priceDisplay {
+  font-size: 2rem;
+  text-align: center;
+  color: #eee;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+/* Static colors for price direction */
+.price-up {
+  color: #4caf50;
+}
+.price-down {
+  color: #f44336;
+}
+
+/* --- ADD: Keyframe animations for the blinking background --- */
+@keyframes price-up-flash {
+  0% { background-color: rgba(76, 175, 80, 0.4); }
+  100% { background-color: transparent; }
+}
+
+@keyframes price-down-flash {
+  0% { background-color: rgba(244, 67, 54, 0.4); }
+  100% { background-color: transparent; }
+}
+
+/* --- ADD: Classes to trigger the animations --- */
+.price-up-animate {
+  animation: price-up-flash 0.6s ease-out;
+}
+
+.price-down-animate {
+  animation: price-down-flash 0.6s ease-out;
+}
+
+canvas {
+  background: #1e1e1e;
+  border-radius: 8px;
+  width: 100% !important;
+  height: 400px !important;
+}
+#suggestion {
+  padding: 1rem;
+  background: #1e1e1e;
+  border-radius: 8px;
+  min-height: 150px;
+}
+#suggestion h2 {
+    margin-top: 0;
+}
+#suggestion.error {
+  color: #f66;
+}
+/* Responsive layout for smaller screens */
+@media (max-width: 800px) {
+    #container {
+        grid-template-columns: 1fr;
+    }
+}

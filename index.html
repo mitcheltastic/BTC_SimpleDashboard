@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BTC Trading Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3"></script>
+  <!-- Required for candlestick charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-financial@0.2.0"></script>
+  <!-- Required for the current price line -->
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1"></script>
+  <script src="https://cdn.ably.com/lib/ably.min-1.js"></script>
+</head>
+<body>
+  <h1>🚀 BTC Trading Dashboard</h1>
+
+  <div id="container">
+    <div>
+      <div id="controls">
+        <label for="timeframeSelect">Timeframe:</label>
+        <select id="timeframeSelect">
+          <option value="1m">1m</option>
+          <option value="5m">5m</option>
+          <option value="15m">15m</option>
+          <option value="30m">30m</option>
+          <option value="1h" selected>1h</option>
+          <option value="4h">4h</option>
+          <option value="1d">1D</option>
+          <option value="1w">1W</option>
+          <option value="1M">1M</option>
+        </select>
+        <div id="priceDisplay">Loading…</div>
+      </div>
+      <canvas id="priceChart"></canvas>
+    </div>
+    <div id="suggestion">
+      <h2>Trade Suggestion</h2>
+      <p id="action">Loading...</p>
+      <p><strong>SL:</strong> <span id="sl">—</span></p>
+      <p><strong>TP:</strong> <span id="tp">—</span></p>
+      <!-- Move the time element below SL and TP -->
+      <p><strong>Updated at: </strong><span id="timeEl">Loading...</span></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
