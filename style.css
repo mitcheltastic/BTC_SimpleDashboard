@@ -46,35 +46,6 @@ canvas {
     animation: price-down-flash 0.6s ease-out;
 }
 
-<<<<<<< HEAD
-canvas {
-  background: #ffffff; /* White background for chart */
-  border-radius: 8px;
-  width: 100% !important;
-  height: 400px !important;
-}
-
-#suggestion {
-  padding: 1rem;
-  background: #f5f5f5; /* Light background for suggestion box */
-  border-radius: 8px;
-  min-height: 150px;
-  color: #333; /* Dark text */
-}
-
-#suggestion h2 {
-  margin-top: 0;
-}
-
-#suggestion.error {
-  color: #f66; /* Red color for errors */
-}
-
-@media (max-width: 800px) {
-  #container {
-    grid-template-columns: 1fr;
-  }
-=======
 /* Spinner animation */
 @keyframes spin {
     0% { transform: rotate(0deg); }
@@ -97,5 +68,4 @@ canvas {
     body {
         padding: 1rem;
     }
->>>>>>> 013dd8281eff0576a3059983cd1a1db1c601e998
 }
