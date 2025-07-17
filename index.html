@@ -1,51 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BTC Trading Dashboard</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3"></script>
-  <!-- Required for candlestick charts -->
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-financial@0.2.0"></script>
-  <!-- Required for the current price line -->
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1"></script>
-  <script src="https://cdn.ably.com/lib/ably.min-1.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>BTC - SenpaiPredict</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Chart.js and related libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-financial@0.2.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1"></script>
+    <!-- Ably.js for real-time data -->
+    <script src="https://cdn.ably.com/lib/ably.min-1.js"></script>
 </head>
-<body>
-  <h1>🚀 BTC Trading Dashboard</h1>
+<body class="antialiased">
+    <h1 class="text-5xl sm:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 mb-12 flex items-center justify-center">
+        <span class="mr-5 text-6xl"><img src="POTO/Senpai.png" alt="Senpai Icon" class="w-16 h-16 mr-5 rounded-full object-cover"></span> BTC - SenpaiPredict
+    </h1>
 
-  <div id="container">
-    <div>
-      <div id="controls">
-        <label for="timeframeSelect">Timeframe:</label>
-        <select id="timeframeSelect">
-          <option value="1m">1m</option>
-          <option value="5m">5m</option>
-          <option value="15m">15m</option>
-          <option value="30m">30m</option>
-          <option value="1h" selected>1h</option>
-          <option value="4h">4h</option>
-          <option value="1d">1D</option>
-          <option value="1w">1W</option>
-          <option value="1M">1M</option>
-        </select>
-        <div id="priceDisplay">Loading…</div>
-      </div>
-      <canvas id="priceChart"></canvas>
-    </div>
-    <div id="suggestion">
-      <h2>Trade Suggestion</h2>
-      <p id="action">Loading...</p>
-      <p><strong>SL:</strong> <span id="sl">—</span></p>
-      <p><strong>TP:</strong> <span id="tp">—</span></p>
-      <!-- Move the time element below SL and TP -->
-      <p><strong>Updated at: </strong><span id="timeEl">Loading...</span></p>
-    </div>
-  </div>
+    <div id="container" class="w-full max-w-7xl flex flex-col lg:flex-row gap-8 p-8 bg-gray-950 rounded-3xl shadow-2xl border border-gray-800">
+        <!-- Chart Section -->
+        <div class="flex-1 bg-gray-900 p-6 rounded-2xl shadow-inner border border-gray-800">
+            <div id="controls" class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-5">
+                <div class="flex items-center space-x-4">
+                    <label for="timeframeSelect" class="text-gray-300 text-lg font-medium">Timeframe:</label>
+                    <select id="timeframeSelect" class="bg-gray-800 text-white border border-gray-700 rounded-lg py-2.5 px-5 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out cursor-pointer text-base">
+                        <option value="1m">1m</option>
+                        <option value="5m">5m</option>
+                        <option value="15m">15m</option>
+                        <option value="30m">30m</option>
+                        <option value="1h" selected>1h</option>
+                        <option value="4h">4h</option>
+                        <option value="1d">1D</option>
+                        <option value="1w">1W</option>
+                        <option value="1M">1M</option>
+                    </select>
+                </div>
+                <div id="priceDisplay" class="text-4xl font-extrabold text-green-400 bg-gray-800 py-3 px-6 rounded-xl shadow-lg min-w-[180px] text-center transition-colors duration-300 ease-in-out">
+                    Loading…
+                </div>
+            </div>
+            <canvas id="priceChart" class="bg-gray-900 rounded-lg"></canvas>
+        </div>
 
-  <script src="script.js"></script>
+        <!-- Suggestion Section -->
+        <div id="suggestion" class="lg:w-1/4 bg-gray-900 p-6 rounded-2xl shadow-inner border border-gray-800 flex flex-col justify-between">
+            <div>
+                <h2 class="text-2xl font-semibold text-blue-300 mb-5 border-b border-gray-700 pb-4">Trade Suggestion</h2>
+                <p id="action" class="text-5xl font-extrabold mb-6 text-center text-yellow-400">Loading...</p>
+                <div class="space-y-4 text-lg">
+                    <p class="flex justify-between items-center">
+                        <strong class="text-gray-300">SL (Stop Loss):</strong>
+                        <span id="sl" class="text-red-400 font-semibold bg-gray-800 py-1.5 px-4 rounded-md text-base">—</span>
+                    </p>
+                    <p class="flex justify-between items-center">
+                        <strong class="text-gray-300">TP (Take Profit):</strong>
+                        <span id="tp" class="text-green-400 font-semibold bg-gray-800 py-1.5 px-4 rounded-md text-base">—</span>
+                    </p>
+                </div>
+            </div>
+            <p class="text-sm text-gray-400 mt-8 text-right">
+                <strong class="text-gray-300">Updated at: </strong>
+                <span id="timeEl" class="font-medium">Loading...</span>
+            </p>
+            <!-- Refresh Prediction Button -->
+            <button id="refreshPredictionBtn" class="mt-6 w-full py-2 px-4 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-300 ease-in-out flex items-center justify-center">
+                <span id="refreshPredictionText">Refresh Prediction</span>
+                <div id="refreshPredictionSpinner" class="spinner hidden"></div>
+            </button>
+            <!-- Prediction Info (now always visible) -->
+            <div id="predictionInfo" class="mt-4 p-4 bg-gray-800 rounded-lg text-sm text-gray-300 border border-gray-700">
+                <p class="mb-2"><strong>Important:</strong> This prediction is highly likely to be incorrect and may change at any time. Always do your own research before making trading decisions.</p>
+<p>This prediction is still valid for <strong>1 hour ahead</strong> from the last update time.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
