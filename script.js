@@ -1,6 +1,6 @@
 (async () => {
   // CONFIG
-  const baseHistoryUrl = 'https://bb457d42-9a6b-426a-898e-322d1deb5acb-00-1njyfaemusj4v.pike.replit.dev/history';
+  const baseHistoryUrl = 'https://backendbtc-production.up.railway.app/history';
   const ablyKey        = '3p_6tA.5-L0UA:wBCfc8CPkfWL3ynQ9nW83979jQ7Fo1ixo0Bcks9f8rM';
   const WINDOW_SIZE    = 50;
   const suggestionUrl  = `https://web-production-0283.up.railway.app/predict`;

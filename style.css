@@ -2,13 +2,16 @@ body {
   font-family: sans-serif;
   margin: 0;
   padding: 1rem;
-  background: #121212;
-  color: #eee;
+  background: #ffffff; /* White background */
+  color: #333; /* Dark text color for readability */
 }
+
 h1 {
-    text-align: center;
-    margin-bottom: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #1a73e8; /* Set the title color to a nice blue */
 }
+
 #container {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -16,46 +19,41 @@ h1 {
   max-width: 1200px;
   margin: auto;
 }
+
 #controls {
   display: flex;
   gap: 1rem;
   margin-bottom: 0.5rem;
   align-items: center;
+  color: #333; /* Dark text for controls */
 }
+
 #timeframeSelect {
   padding: 0.5rem;
-  background: #1e1e1e;
-  color: #eee;
-  border: 1px solid #333;
+  background: #f1f1f1; /* Light background */
+  color: #333; /* Dark text */
+  border: 1px solid #ccc; /* Light border */
   border-radius: 4px;
 }
+
 #priceDisplay {
   font-size: 2rem;
   text-align: center;
-  color: #eee;
+  color: #333; /* Dark text for price */
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
+  background: #e0f7fa; /* Light cyan background */
+  border: 1px solid #80deea; /* Border matching the background */
 }
-/* Static colors for price direction */
+
 .price-up {
-  color: #4caf50;
+  color: #4caf50; /* Green for upward price movement */
 }
+
 .price-down {
-  color: #f44336;
+  color: #f44336; /* Red for downward price movement */
 }
 
-/* --- ADD: Keyframe animations for the blinking background --- */
-@keyframes price-up-flash {
-  0% { background-color: rgba(76, 175, 80, 0.4); }
-  100% { background-color: transparent; }
-}
-
-@keyframes price-down-flash {
-  0% { background-color: rgba(244, 67, 54, 0.4); }
-  100% { background-color: transparent; }
-}
-
-/* --- ADD: Classes to trigger the animations --- */
 .price-up-animate {
   animation: price-up-flash 0.6s ease-out;
 }
@@ -65,26 +63,30 @@ h1 {
 }
 
 canvas {
-  background: #1e1e1e;
+  background: #ffffff; /* White background for chart */
   border-radius: 8px;
   width: 100% !important;
   height: 400px !important;
 }
+
 #suggestion {
   padding: 1rem;
-  background: #1e1e1e;
+  background: #f5f5f5; /* Light background for suggestion box */
   border-radius: 8px;
   min-height: 150px;
+  color: #333; /* Dark text */
 }
+
 #suggestion h2 {
-    margin-top: 0;
+  margin-top: 0;
 }
+
 #suggestion.error {
-  color: #f66;
+  color: #f66; /* Red color for errors */
 }
-/* Responsive layout for smaller screens */
+
 @media (max-width: 800px) {
-    #container {
-        grid-template-columns: 1fr;
-    }
+  #container {
+    grid-template-columns: 1fr;
+  }
 }
